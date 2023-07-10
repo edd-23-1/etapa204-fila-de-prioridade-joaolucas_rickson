@@ -18,8 +18,10 @@ class FilaPrioridade:
 
     # Retorna True se a fila de prioridade está vazia, False caso contrário
     def is_empty(self) -> bool:
-        # implementação do método
-        pass
+        if self.__qtdItens = 0:
+            return True
+        else:
+            return False
 
     
     # retorna True se a fila de prioridade está cheia, False caso contrário
