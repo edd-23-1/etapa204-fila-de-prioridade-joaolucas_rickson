@@ -42,29 +42,28 @@ class FilaPrioridade:
     # insere um item na fila de prioridade e retorna True, se o item for inserido
     # se a fila de prioridade estiver cheia, lança uma exceção: raise Exception("mensagem de erro")
     def add(self, valor, prioridade) -> bool:
-       novo_no = No(valor,prioridade)
-       if self.is_full():
-            raise Exception("A capacidade fila de prioridade foi atingida.")
-       if self.is_empty():
-            self.__inicio = novo_no
-            self.__qtdItens += 1
-            return True
+        no = No(valor, prioridade)
+        if self.is_full():
+            raise Exception("Lista de prioridade atingiu seu limite!")
 
-       no_anterior = None
-       no_atual = self.__inicio
-       while no_atual != None and no_atual.prioridade <= prioridade:
-            no_anterior = no_atual
-            no_atual = no_atual.prox
+        elif self.is_empty():
+            self.__inicio = no
+        
+        elif prioridade > self.__inicio.prioridade:
+            no.prox = self.__inicio
+            self.__inicio = no
 
-       if no_anterior is None:
-            novo_no.prox = self.__inicio
-            self.__inicio = novo_no
-       else:
-            novo_no.prox = no_atual
-            no_anterior.prox = novo_no
+        else:    
+            pointer = self.__inicio
+            while pointer.prox and prioridade <= pointer.prox.prioridade:
+                pointer = pointer.prox
 
-       self.__qtdItens += 1
-       return True
+            no.prox = pointer.prox
+            pointer.prox = no
+
+        self.__qtdItens += 1    
+        return True
+    
     
     # remove o primeiro item da fila de prioridade, caso não esteja vazia, e retorna o Nó
     # se a fila de prioridade estiver vazia, lança uma exceção: raise Exception("mensagem de erro")
@@ -90,7 +89,7 @@ class FilaPrioridade:
        itens = []
        no_atual = self.__inicio
        while no_atual is not None:
-            itens.append((no_atual.valor, no_atual.prioridade))
+            itens.append((no_atual.dado, no_atual.prioridade))
             no_atual = no_atual.prox
 
        for item in itens:
