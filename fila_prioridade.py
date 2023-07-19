@@ -52,7 +52,7 @@ class FilaPrioridade:
 
        no_anterior = None
        no_atual = self.__inicio
-       while no_atual is not None and no_atual.prioridade <= prioridade:
+       while no_atual != None and no_atual.prioridade <= prioridade:
             no_anterior = no_atual
             no_atual = no_atual.prox
 
@@ -83,7 +83,23 @@ class FilaPrioridade:
     # caso a fila de prioridade esteja vazia, imprime uma mensagem informando
     # que a fila de prioridade está vazia e retorna uma lista vazia
     def display(self) -> list[tuple()]:
-       pass
+       nova_lista = []
+       if self.is_empty():
+        print("A fila de prioridade,no momento,está vazia")
+        return nova_lista
+       itens = []
+       no_atual = self.__inicio
+       while no_atual is not None:
+            itens.append((no_atual.valor, no_atual.prioridade))
+            no_atual = no_atual.prox
+
+       for item in itens:
+            print(item)
+
+       return itens
+
+         
+
     
 
     # retorna a quantidade de elementos na fila de prioridade
