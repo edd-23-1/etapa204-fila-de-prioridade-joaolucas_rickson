@@ -25,8 +25,9 @@ class FilaPrioridade:
     
     # retorna True se a fila de prioridade está cheia, False caso contrário
     def is_full(self) -> bool:
-        # implementação do método
-        pass
+       if self.__qtdItens >= self.__capacidade:
+           return True
+       return False
 
 
     # Retorna uma referência para o primeiro item da fila de prioridade
