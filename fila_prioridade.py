@@ -18,11 +18,10 @@ class FilaPrioridade:
 
     # Retorna True se a fila de prioridade está vazia, False caso contrário
     def is_empty(self) -> bool:
-        if self.__qtdItens = 0:
-            return True
-        else:
-            return False
-
+       if self.__qtdItens == 0:
+           return True
+       else:
+        return False
     
     # retorna True se a fila de prioridade está cheia, False caso contrário
     def is_full(self) -> bool:
@@ -33,8 +32,10 @@ class FilaPrioridade:
     # Retorna uma referência para o primeiro item da fila de prioridade
     # Caso a lista esteja vazia, retorna None
     def first(self) -> No:
-        # implementação do método
-        pass
+        if self.is_empty():
+            return None
+        else:
+            return self.__inicio
 
 
     # insere um item na fila de prioridade e retorna True, se o item for inserido
